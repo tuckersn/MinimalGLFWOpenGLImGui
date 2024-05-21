@@ -20,16 +20,19 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw/include")
 
 set(IMGUI_PATH "${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui")
-    list(APPEND sources
-        ${IMGUI_PATH}/imgui.cpp
-        ${IMGUI_PATH}/imgui_stdlib.cpp
-        ${IMGUI_PATH}/imgui_draw.cpp
-        ${IMGUI_PATH}/imgui_tables.cpp
-        ${IMGUI_PATH}/imgui_widgets.cpp
-        ${IMGUI_PATH}/imgui_impl_glfw.cpp
-        ${IMGUI_PATH}/imgui_impl_opengl3.cpp
-        ${IMGUI_PATH}/imgui_demo.cpp
-    )
+list(APPEND sources
+    ${IMGUI_PATH}/imgui.cpp
+    ${IMGUI_PATH}/imgui_stdlib.cpp
+    ${IMGUI_PATH}/imgui_draw.cpp
+    ${IMGUI_PATH}/imgui_tables.cpp
+    ${IMGUI_PATH}/imgui_widgets.cpp
+    ${IMGUI_PATH}/imgui_impl_glfw.cpp
+    ${IMGUI_PATH}/imgui_impl_opengl3.cpp
+    ${IMGUI_PATH}/imgui_demo.cpp
+)
+file(GLOB IMGUI_SOURCES ${IMGUI_PATH}/*.cpp)
+add_library("ImGui" STATIC ${IMGUI_SOURCES})
+
 
 target_include_directories("LifeSim" PRIVATE 
     "${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw/include"
